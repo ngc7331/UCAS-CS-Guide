@@ -1,0 +1,31 @@
+name: sync-gitee
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  run:
+    name: sync-gitee
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_USER: ngc7331
+      GITHUB_REPO: UCAS-CS-Guide
+      GITEE_USER: xu_zh
+      GITEE_REPO: UCAS-CS-Guide
+    steps:
+    - name: Clone from github
+      run: |
+        git clone "https://github.com/$GITHUB_USER/$GITHUB_REPO.git" $GITEE_REPO
+    - name: Add gitee remote
+      run: |
+        cd $GITEE_REPO
+        git remote add gitee "https://$GITEE_USER:${{ secrets.GITEE_TOKEN }}@gitee.com/$GITEE_USER/$GITEE_REPO.git"
+        git remote set-head origin -d
+    - name: Push to gitee
+      run: |
+        cd $GITEE_REPO
+        git push gitee --prune +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
