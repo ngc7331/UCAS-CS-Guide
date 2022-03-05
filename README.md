@@ -59,6 +59,7 @@ Reading package lists... Done  // 计算机给出的输出
 # 目录
 ## [Linux](doc/linux.md)
 - Linux 系统、发行版简要介绍
+- 重要概念
 - 图形化与命令行
 - 与 windows 的不同
 - 常用指令
@@ -75,8 +76,7 @@ Reading package lists... Done  // 计算机给出的输出
 
 ## [SSH](doc/ssh.md)
 - 简介
-- 使用 ssh 连接到虚拟机
-- 在 vscode 中使用 ssh
+- 使用 ssh 连接到 Linux 系统
 - ssh-key
 
 ## [Git](doc/git.md)
