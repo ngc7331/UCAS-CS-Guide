@@ -18,11 +18,12 @@ Made with ❤️ by an ordinary UCASer
 
 ## 说明
 - 因个人能力有限，本指南**不可避免的会存在疏漏乃至错误**，希望各位大佬包涵
-- ***如果您发现了问题，或者有希望添加到指南中的内容，欢迎Issue以及PR***
-  * 什么是 Issue / PR？请参考 [git](doc/git.md) 页面
+- ***如果您发现了问题，或者有希望添加到指南中的内容，欢迎发送Discussion, Issue以及PR***
+  * 什么是 Discussion / Issue / PR？请参考 [git](doc/git.md) 页面
 - 本指南会大量结合我——作为一个 UCAS 计系学生——在课程中的实际经验进行编写。侧重于解释和解决实际同学产生的困惑和遇到的麻烦，不一定具有普适性
 - 个人主要使用 Debian 系的发行版，对其它发行版不算熟悉，本文将基于 Ubuntu 进行编写，如果您熟悉其他发行版，欢迎补充。
   * 什么是 发行版 / Debian / Ubuntu？请参考 [linux](doc/linux/linux.md) 页面
+- 本指南仍在施工中，请见[Project](https://github.com/ngc7331/UCAS-CS-Guide/projects/1)页面
 
 ## 如何使用
 - 请善用 `Ctrl+F` 搜索页面中的内容
@@ -53,31 +54,39 @@ Reading package lists... Done  // 计算机给出的输出
 - 本文开源在 Github 上
 
 # 目录
-## [Linux](doc/linux.md) **TODO**
-- Linux系统、发行版简要介绍
+## [Linux](doc/linux.md)
+- Linux 系统、发行版简要介绍
 - 图形化与命令行
+- 与 windows 的不同
 - 常用指令
 
-### [安装软件](doc/linux/install_program.md) **TODO**
+### [安装软件](doc/linux/install_program.md)
 - apt
 - dpkg
 
-### [编辑器](doc/editor.md) **TODO**
+### [编辑器](doc/editor.md)
 - vi、vim
 - nano
 - gedit
 - vscode
 
-## [SSH](doc/ssh.md) **TODO**
+## [SSH](doc/ssh.md)
 - 简介
 - 使用 ssh 连接到虚拟机
 - 在 vscode 中使用 ssh
-- SSH-Key
+- ssh-key
 
-## [Git](doc/git.md) **TODO**
+## [Git](doc/git.md)
 - 简介
 - 常用指令和参数
 - Github
+
+## [虚拟机](doc/VM.md)
+
+## 课程实例
+- [说明](doc/course_example/info.md)
+- [程序设计基础与实验（C语言）](doc/course_example/c.md)
+- [计算机组成原理](doc/course_example/COD.md)
 
 ## [应对错误](doc/problem.md)
 - 常见错误及解决方案
