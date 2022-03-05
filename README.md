@@ -57,7 +57,7 @@ Reading package lists... Done  // 计算机给出的输出
 - 本文开源在 Github 上
 
 # 目录
-## [Linux](doc/linux.md)
+## [Linux](doc/linux/linux.md)
 - Linux 系统、发行版简要介绍
 - 重要概念
 - 图形化与命令行
@@ -68,7 +68,7 @@ Reading package lists... Done  // 计算机给出的输出
 - apt
 - dpkg
 
-### [编辑器](doc/editor.md)
+### [编辑器](doc/linux/editor.md)
 - vi、vim
 - nano
 - gedit
