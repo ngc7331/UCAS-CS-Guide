@@ -8,7 +8,7 @@ Made with ❤️ by an ordinary UCASer
 ## IDEA
 ~~你是否也曾烦恼于计算机科学导论、C 语言、计算机组成原理等课程？~~
 
-~~你是否需要 Linux\Git\虚拟机等课上要用老师却不教的内容的指导？~~
+~~你是否需要 Linux、Git、虚拟机等课上要用老师却不教的内容的指导？~~
 
 ~~快来阅读本指南吧！5毛一条，括号删掉~~
 
@@ -29,7 +29,7 @@ Made with ❤️ by an ordinary UCASer
 ## 如何使用
 - 本指南可以在以下页面阅读：
   * 当前 [Github](https://github.com/ngc7331/UCAS-CS-Guide) 仓库
-  * [Github Pages](https://ngc7331.github.io/ucas-cs-guide/)
+  * [Github Pages](https://ngc7331.github.io/UCAS-CS-Guide/)
   * [Gitee](https://gitee.com/xu_zh/UCAS-CS-Guide) 镜像仓库：国内可能访问较快，但更新可能滞后于 Github，采用 Github Actions 自动同步
 - 请善用 `Ctrl+F` 搜索页面中的内容
 - 参考资料会在各页面的底部给出，如有需要查阅更加详细的文档，请前往原始页面

@@ -12,6 +12,8 @@
       - [文件没有可执行权限](#文件没有可执行权限)
     - [网络问题](#网络问题)
       - [DNS 解析错误](#dns-解析错误)
+    - [磁盘问题](#磁盘问题)
+      - [文件系统故障](#文件系统故障)
   - [如何初步读懂报错](#如何初步读懂报错)
     - [定位报错信息](#定位报错信息)
     - [检查日志文件](#检查日志文件)
@@ -84,8 +86,14 @@ $ chmod +x ./some_script
 ```
 
 ### 网络问题
+网络是个很复杂的东西，很难在这里枚举出各种情况和应对方案，请适时求助他人。
 #### DNS 解析错误
-例如`Could not resolve host: xx`，关键词是“解析” (resolve)
+例如
+```
+Could not resolve host: xx
+Temporary failure in name resolution
+```
+关键词是“解析” (resolve / resolution)
 
 错误原因通常为：
 - 你网络寄了：
@@ -94,7 +102,49 @@ $ chmod +x ./some_script
   * 请检查校园网是否登录
 - DNS 服务器寄了：请向他人询问是否发生相同错误，以便确认确实是 DNS 服务器寄了。一般等待即可恢复。
 
-网络是个很复杂的东西，很难在这里枚举出各种情况和应对方案，请适时求助他人。
+
+
+### 磁盘问题
+#### 文件系统故障
+虚拟机系统正常启动，读取正常，但是写入、修改、删除文件时出现类似如下报错：
+```
+fatal: unable to create xxx: Read-only file system
+rm: cannot remove xxx: Read-only file system
+```
+如果在`sudo`权限下依然出现这样的报错，基本可以排除[权限问题](#权限问题)。此时需要考虑是否出现文件系统故障。
+
+首先查看系统的文件系统挂载情况
+```
+$ cat /proc/mounts
+...
+devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0
+/dev/sda1 / ext4 ro,relatime,errors=remount-ro 0 0
+tmpfs /dev/shm tmpfs rw,nosuid,nodev,inode64 0 0
+...
+```
+这里面每一行代表一个挂载条目，格式如
+```
+设备名 挂载点 文件系统格式 flags
+```
+- 设备名包括物理磁盘`/dev/sda`、`/dev/sdb`等，也包括临时文件系统`tmpfs`等
+- 挂载点表示该设备挂载的路径
+- 文件系统格式包括`ext4`、`tmpfs`等
+
+需要关注的是根目录`/`对应的物理设备，如上例中的`/dev/sda1`，后面是否出现`ro`(Read-only)、`errors=remount-ro`等字样。
+
+若出现，则很可能是文件系统故障导致系统自动将其挂载为只读模式。
+
+应对方式如下：
+1. 关闭虚拟机并备份，避免修复出错导致文件无法读取
+2. 使用`sudo fsck -f <device>`，其中device为实际物理设备名，如上例中`/dev/sda1`，进行自动修复，该过程可能持续数十分钟
+3. 重启虚拟机，再次检查文件系统是否恢复`rw`(Read-Write)模式
+
+Note:
+- 请避免使用强制关机虚拟机，普通的关机方式虽然慢，但可以减少故障
+- 请适时备份虚拟机，见[虚拟机](VM.md)一节
+- 如果该故障多次出现，请留意主机硬盘是否存在/将要故障
+  * 若了解，尝试使用 Crystal Disk Info 等工具读取 S.M.A.R.T. 信息检查
+  * 否则，请适时向他人求助
 
 
 
