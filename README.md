@@ -24,7 +24,7 @@ Made with ❤️ by an ordinary UCASer
 - 本指南会大量结合我——作为一个 UCAS 计系学生——在课程中的实际经验进行编写。侧重于解释和解决实际同学产生的困惑和遇到的麻烦，不一定具有普适性
 - 个人主要使用 Debian 系的发行版，对其它发行版不算熟悉。且考虑到学校课程通常使用 Ubuntu。本文将基于 Ubuntu 进行编写，如果您熟悉其他发行版，欢迎补充。
   * 什么是 发行版 / Debian / Ubuntu？请参考 [linux](doc/linux/linux.md) 页面
-- 本指南仍在施工中，请见[Project](https://github.com/ngc7331/UCAS-CS-Guide/projects/1)页面
+- 本指南仍在施工中，请见 [Project](https://github.com/ngc7331/UCAS-CS-Guide/projects/1) 页面
 
 ## 如何使用
 - 本指南可以在以下页面阅读：
@@ -54,7 +54,7 @@ Reading package lists... Done  // 计算机给出的输出
 - 不常用的命令及参数
 
 ## 知识共享
-- 本文采用[CC-BY-SA-4.0 协议](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)共享
+- 本文采用 [CC-BY-SA-4.0 协议](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)共享
 - 本文开源在 Github 上
 
 # 目录

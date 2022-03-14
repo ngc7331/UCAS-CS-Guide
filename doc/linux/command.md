@@ -7,7 +7,7 @@
 
 俗话说：“没有消息就是最好的消息”，Linux 下很多指令**成功执行时都没有输出**，只要确认输入正确，就无需担心运行结果是否正确。如仍需校验结果，常常需要使用不同指令辅助。
 
-- [Linux 命令大全 | 菜鸟教程](https://www.runoob.com/linux/linux-command-manual.html)
+- [Linux 命令大全 \| 菜鸟教程](https://www.runoob.com/linux/linux-command-manual.html)
 
 
 
@@ -39,7 +39,7 @@
     - [与 `&&`、或 `||`、`;`](#与-或-)
     - [管道符 `|`](#管道符-)
     - [输出重定向符 `>`、 `>>`](#输出重定向符--)
-    - [多行输入`\`](#多行输入)
+    - [多行输入` \ `](#多行输入)
   - [安装软件](#安装软件)
   - [`ssh`](#ssh)
   - [`git`](#git)
@@ -185,24 +185,21 @@ $ sudo apt update && sudo apt upgrade // 正确：先执行更新软件源，随
 $ echo 123 > test
 $ cat test
 123
-
+```
+```
 $ echo 456 >> test
 $ cat test
 123
 456
-
+```
+```
 $ echo 789 > test
 $ cat test
 789
 ```
 
-### 多行输入`\`
-- 用法：
-```
-<指令> <某些参数> \
-<另一些参数>
-```
-- 当一个指令需要多行输入时（通常是为了人读起来更方便），在除了最后一行外每行结尾增加` \`
+### 多行输入` \ `
+- 当一个指令需要多行输入时（通常是为了人读起来更方便），在除了最后一行外每行结尾增加` \ `
 - 后续行的标识符将变成`>`，而不再是`$`或`#`
 - 示例：
 ```
@@ -211,13 +208,15 @@ $ echo 123\
 > 789
 123456 789
 // 完全等价于 echo 123456 789
-
+```
+```
 $ docker run -p 80:80 \
 > -v /data:/data \
 > -d nginx:latest
 // 完全等价于 docker run -p 80:80 -v /data:/data -d nginx:latest
-// 用于分割参数时必须在 \ 前带一个空格，否则
-
+// 用于分割参数时必须在 \ 前带一个空格，否则↓
+```
+```
 $ docker run -p 80:80\
 > -d nginx:latest
 docker: Invalid containerPort: 80-d
@@ -226,6 +225,7 @@ docker: Invalid containerPort: 80-d
 
 
 ## 安装软件
+- `apt` / `dpkg` / `make`
 - 见[安装软件](install_program.md)一节
 
 ## `ssh`
