@@ -6,10 +6,12 @@
   - [目录](#目录)
   - [网站](#网站)
   - [视频](#视频)
+  - [在线练习](#在线练习)
   - [致谢](#致谢)
 
 
 
+---
 ## 网站
 - [菜鸟教程](https://www.runoob.com/)：包括了 HTML、CSS、Javascript、Go、C/C++、Verilog 等各种语言的基础编程教程。也包含 Git、Linux 等常用环境和工具的教程。
 - [W3School](https://www.w3school.com.cn/)：web 开发教程。从基础的 HTML 到 CSS，乃至进阶的 XML、SQL、JS、PHP 和 ASP.NET。
@@ -24,10 +26,19 @@
 - [Linux 就该这么学](https://www.linuxprobe.com/)
 
 
+
+---
 ## 视频
 - \*[[MIT]计算机科学课堂中学不到的知识 The Missing Semester of Your CS Education(2020) | bilibili](https://www.bilibili.com/video/BV1x7411H7wa)：MIT 的 Linux 命令行、Vim、Git 等教程的视频版。
 
 
 
+---
+## 在线练习
+- [Verilog OJ](https://verilogoj.ustc.edu.cn/oj/)：中国科学技术大学的 Verilog 在线练习平台
+
+
+
+---
 ## 致谢
 上面这些资料汇总自许多同学的推荐，以及计算机科学导论、计算机组成原理等课程的老师推荐。感谢他们。

@@ -62,8 +62,13 @@ Reading package lists... Done  // 计算机给出的输出
 - Linux 系统、发行版简要介绍
 - 图形化与命令行
 - 重要概念
+  - 输入
+  - 权限
+  - 目录与路径
+  - 交互
 - 与 windows 的不同
-- 常用指令
+
+### [常用指令](doc/linux/command.md)
 
 ### [安装软件](doc/linux/install_program.md)
 - 包管理器与软件源
@@ -87,6 +92,10 @@ Reading package lists... Done  // 计算机给出的输出
 - Github
 
 ## [虚拟机](doc/VM.md)
+
+## 环境推荐
+- [WSL](doc/recommend_env/wsl.md)
+- [vscode](doc/recommend_env/vscode.md)
 
 ## 课程实例
 - [说明](doc/course_example/info.md)
