@@ -16,7 +16,7 @@
     - [`apt upgrade`](#apt-upgrade)
     - [`apt remove <pkg1> [<pkg2>...]`](#apt-remove-pkg1-pkg2)
     - [`apt autoremove`](#apt-autoremove)
-    - [示例](#示例)
+    - [输出信息](#输出信息)
   - [`dpkg`](#dpkg)
   - [编译安装](#编译安装)
 
@@ -75,28 +75,13 @@ $ echo \
 
 与软件包相关的操作大部分都是敏感操作，需要 [sudo 权限](linux.md/#用户权限)
 ### `apt update`
-从更新软件源信息，在执行 `install` / `upgrade` 等操作前，或添加软件源后，先执行这一操作
+从更新软件源信息，在执行 `install` / `upgrade` 等操作前，或添加软件源后，**先执行这一操作**
+
+有些安装包时出现的`E: 无法定位软件包`错误就是因为没有执行更新软件源导致的
 
 相当于下载和更新软件源索引列表，告诉本地的包管理器“我这个软件源有哪些软件包”
 
-### `apt install <pkg1> [<pkg2>...]`
-安装名为 pkg1 的软件包，可以一次安装多个软件包
-
-尖括号表示参数名无需输入
-
-### `apt list --upgradable`
-列出系统上所有已安装且可升级的软件包
-
-### `apt upgrade`
-升级系统上所有已安装的软件包
-
-### `apt remove <pkg1> [<pkg2>...]`
-卸载名为 pkg1 的软件包，可以一次卸载多个软件包
-
-### `apt autoremove`
-自动卸载不需要的包（通常是为了解决依赖关系自动安装，而现在不再被依赖的包）
-
-### 示例
+示例：
 ```
 $ sudo apt update
 [sudo] password for <username>:
@@ -110,7 +95,38 @@ Building dependency tree
 Reading state information... Done
 53 packages can be upgraded. Run 'apt list --upgradable' to see them.
 ```
-执行源更新时，系统自动提示存在可升级的包，通过`apt list --upgradable`列出
+执行源更新时，系统有时会自动提示存在可升级的包（如上最后一行），通过`apt list --upgradable`列出
+
+### `apt install <pkg1> [<pkg2>...]`
+安装名为 pkg1 的软件包，可以一次安装多个软件包
+
+尖括号表示参数名无需输入
+
+示例：
+```
+$ sudo apt install vim
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  ...
+Use 'sudo apt autoremove' to remove it.
+Suggested packages:
+  ctags vim-doc vim-scripts
+The following NEW packages will be installed:
+  vim
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 1238 kB of archives.
+After this operation, 3112 kB of additional disk space will be used.
+Do you want to continue? [Y/n]
+```
+
+[输入y确认](linux.md/#输入y确认)操作
+
+### `apt list --upgradable`
+列出系统上所有已安装且可升级的软件包
+
+示例：
 ```
 $ apt list --upgradable
 ...
@@ -120,6 +136,11 @@ gcc-9/focal-updates,focal-security 9.4.0-1ubuntu1~20.04 amd64 [upgradable from: 
 ...
 ```
 格式如：`包名/分支 版本号 架构 [可从旧版本升级]`
+
+### `apt upgrade`
+升级系统上**所有已安装**的软件包
+
+示例：
 ```
 $ sudo apt upgrade
 Reading package lists... Done
@@ -139,12 +160,39 @@ Need to get 219 MB of archives.
 After this operation, 26.1 MB of additional disk space will be used.
 Do you want to continue? [Y/n]
 ```
-提示了三类包：
-1. 为了解决某依赖关系自动安装，而现在不再被依赖的包。提示可以使用`sudo apt autoremove`自动移除
-2. 为了解决升级以后新的依赖关系，需要被安装的包
-3. 将被升级的包
 
 [输入y确认](linux.md/#输入y确认)操作
+
+### `apt remove <pkg1> [<pkg2>...]`
+卸载名为 pkg1 的软件包，可以一次卸载多个软件包
+
+### `apt autoremove`
+自动卸载不需要的包（通常是为了解决依赖关系自动安装，而现在不再被依赖的包）
+
+### 输出信息
+在执行`apt`操作时，系统会提示几类包：
+1. 为了解决某依赖关系自动安装，而现在不再被依赖的包。提示可以使用`sudo apt autoremove`自动移除
+```
+The following package was automatically installed and is no longer required:
+  ...
+Use 'sudo apt autoremove' to remove it.
+```
+2. 人为指定安装，或者为了解决升级以后新的依赖关系自动安装的包
+```
+The following NEW packages will be installed:
+  ...
+```
+3. 将被升级的包
+```
+The following packages will be upgraded:
+  ...
+```
+4. 建议安装，但非必须的包
+```
+Suggested packages:
+  ...
+```
+
 
 
 

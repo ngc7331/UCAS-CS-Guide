@@ -29,10 +29,10 @@
     - [输出全文 `cat`](#输出全文-cat)
     - [输出头行 `head`、输出尾行 `tail`](#输出头行-head输出尾行-tail)
     - [输出差异 `diff`](#输出差异-diff)
+  - [文本匹配和筛选 `grep`](#文本匹配和筛选-grep)
   - [更改文件权限 `chmod`](#更改文件权限-chmod)
   - [更改文件所有者 `chown`](#更改文件所有者-chown)
   - [用户手册 `man`](#用户手册-man)
-  - [`grep`](#grep)
   - [切换用户 `su`](#切换用户-su)
   - [`sudo`](#sudo)
   - [特殊符号](#特殊符号)
@@ -115,6 +115,31 @@
 - 逐行比较两个文件的差异并输出不同的行
 - 如果两个文件没有差异则**无输出**
 
+## 文本匹配和筛选 `grep`
+- 用法：`grep [-i] <pattern> <file>`
+- 在文件`file`中查找带有`pattern`的行并输出
+- `pattern`可以是一个正则表达式
+- 使用`-i`时忽略大小写
+- 注：常与[管道符](#管道符)联合使用
+- 注：`grep`，`awk`和`sed`有时并称“Linux 三剑客”，它们有着比此处所提及到更强大的功能，但由于课程一般使用不到，请有兴趣的同学自行了解
+  * [grep,sed,awk笔记 \| AJ丶cheng](https://blog.51cto.com/u_12554680/2307019)
+- 示例：
+```
+$ cat config.json
+{
+...
+  "USERNAME": "some-user",
+  "password": "this_is_a_passwd",
+...
+}
+```
+```
+$ grep -i username config.json
+  "USERNAME": "some-user",
+$ grep username config.json
+// 无输出（未指定-i，config.json文档中没有匹配小写username的行）
+```
+
 ## 更改文件权限 `chmod`
 - 用法：`chmod <permission> <path>`
 - 将`path`指定的文件（夹）赋予权限`permission`，它可以是
@@ -132,17 +157,24 @@
 - 查看指令的用户手册
 - 使用[阅读模式](linux.md/#阅读模式)
 
-## `grep`
-- 用法：`grep [-i] <text> <file>`
-- 在文件`file`中查找带有`text`的行并输出
-- 使用`-i`时忽略大小写
-- 常与[管道符](#管道符)联合使用
-
 ## 切换用户 `su`
 - 用法：`su [<user>]`
 - 切换至`user`，需要输入`user`的密码
-- `user`缺省时默认为当前用户，一般来讲
-- 特殊用法：直接`su root`需要使用`root`的密码，它一般是不知道或者处于安全考虑禁用的；而`sudo su`可以切换至`root`用户，只需输入自己的密码。
+- `user`缺省时默认为当前用户，一般来讲没有作用，但考虑下面这种做法：
+```
+user1@host:~$ sudo -u user2 su
+// 由于使用了 sudo -u，该命令被认为是以 user2 身份执行
+// su 后面缺省了参数，故会将用户切换为 user2
+// 而 sudo 是 user1 执行的，故需要输入的是 user1 的密码
+```
+- 常见特殊用法：直接`su root`需要使用`root`的密码，该密码一般是用户未知、或者出于安全考虑被禁用的；而`sudo su`可以切换至`root`用户，只需输入自己的密码
+```
+user1@host:~$ su root
+Password: // 应输入 root 的密码，未知或禁用
+user1@host:~$ sudo su
+[sudo] Password of user1: // 应输入 user1 的密码，已知
+// sudo su 等价于 sudo -u root su root，请参考这两个命令的缺省值理解
+```
 
 ## `sudo`
 - 用法：`sudo [-u <user>] <指令>`
@@ -176,6 +208,13 @@ $ sudo apt update && sudo apt upgrade // 正确：先执行更新软件源，随
 - 用法：`<指令1> | <指令2>`
 - 简单来说，它是把指令1的输出作为指令2的输入进行执行
 - 常见用于`grep`指令，例如`cat <file> | grep <text>`等价于`grep <text> <file>`
+- 示例：
+```
+$ cat config.json | grep -i username
+  "USERNAME": "some-user",
+$ cat config.json | grep password
+  "password": "this_is_a_passwd",
+```
 
 ### 输出重定向符 `>`、 `>>`
 - 用法：`<指令> > <file>`、`<指令> >> <file>`

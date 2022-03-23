@@ -60,13 +60,14 @@ Reading package lists... Done  // 计算机给出的输出
 # 目录
 ## [Linux](doc/linux/linux.md)
 - Linux 系统、发行版简要介绍
+- Linux 的优势——为什么不直接用 Windows
 - 图形化与命令行
 - 重要概念
   - 输入
   - 权限
   - 目录与路径
   - 交互
-- 与 windows 的不同
+- 与 Windows 的不同
 
 ### [常用指令](doc/linux/command.md)
 

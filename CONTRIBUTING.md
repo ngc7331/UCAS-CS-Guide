@@ -25,3 +25,13 @@
 请把这里当作一个论坛尽情使用吧
 
 与指南维护相关的问题，例如反馈错误和建议新增，请使用 Issue 而非 Discussion
+
+
+
+## Projects
+用于公示和追踪写作进度，其中
+- To do：计划未来添加的内容模块，但暂时无人负责
+- Planned：已有人负责，但暂未开始或暂停写作
+- In progress：正在写作，暂未 commit 或 PR
+- Done：已完成
+- Continuing：持续维护更新的内容模块
