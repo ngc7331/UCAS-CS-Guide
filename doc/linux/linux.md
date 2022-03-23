@@ -17,6 +17,7 @@
     - [安全](#安全)
   - [图形化与命令行](#图形化与命令行)
     - [读懂终端](#读懂终端)
+    - [使用终端](#使用终端)
   - [输入](#输入)
     - [大小写敏感](#大小写敏感)
     - [空格与引号](#空格与引号)
@@ -107,7 +108,7 @@ Linux 系统下常见的编程环境，例如 c / python3 / go / docker 等，�
 
 尽管大部分 Linux 发行版都可以像 Windows 一样使用支持鼠标的图形化界面，主流的在 Linux 上进行开发的方式还是使用纯键盘的命令行模式。主要理由如下：
 - 图形化界面比较占用资源
-- 做开发时大部分时间只需要打开编辑器、使用键盘输入代码，没有必要使用图形化界面（即使使用 vscode 等图形化编辑器，也可以用[远程连接](../ssh.md#在vscode中使用ssh)的方式代替直接在 Linux 中运行图形化界面）
+- 做开发时大部分时间只需要打开编辑器、使用键盘输入代码，没有必要使用图形化界面（即使使用 vscode 等图形化编辑器，也可以用[远程连接](../ssh.md#在-vscode-中使用ssh)的方式代替直接在 Linux 中运行图形化界面）
 - 有些软件的图形化界面支持并不稳定，会产生预期以外的错误
 - 有时开发是在远程服务器上进行的，传输图形化界面对网络要求高
 
@@ -139,10 +140,61 @@ ubuntu@server-7anw4ytc:~$
 - `$`/`#`：前者表示当前用户**不是** root，后者则表示是 root
   * 注：可能根据终端不同有所变化，Ubuntu 默认的 bash 环境及推荐的 zsh 环境下通常是这两个符号
 
+### 使用终端
 出现上面的`user@host:/dir$`时意味着可以向终端输入指令
 
-- [常用指令](command.md)
-- [Linux 命令大全 | 菜鸟教程](https://www.runoob.com/linux/linux-command-manual.html)
+一个指令通常由一个命令和若干个参数组成
+
+有些参数没有参数名，有些参数既有参数名又有参数值，还有些参数仅有参数名（起开关作用）
+
+例如
+```
+$ ls                        // 无参数
+$ ls -l                     // 有一个开关型参数 -l
+$ tail -n 10                // 有一个名为 -n，值为 10 的参数
+$ ls some-dir               // 有一个参数 some-dir
+$ cp src dst                // 有两个参数 src 和 dst
+$ gcc -o output -lm test.c  // 有三个参数：第一个名为 -o，值为 output；第二个为开关型 -lm，第三个为 test.c
+```
+参数的具体含义、类型、是否有序等，与具体的命令（软件包）有关。请查阅文档
+
+**必选参数**表示必须提供的参数；**可选参数**表示可有可无的参数，通常具有一个默认值
+
+例如`gcc`命令中，待编译的`.c`文件是一个必选参数，而输出是一个可选参数，其默认值为`a.out`
+```
+$ gcc -o output
+gcc: fatal error: no input files
+compilation terminated.
+// 错误：没有提供待编译的 .c 文件
+$ gcc test.c
+// 等价于 gcc test.c -o output 或 gcc -o output test.c
+```
+
+在本指南中，将以`<>`标识参数名，`[]`标识可选参数
+
+例如列出路径下的文件，文档中会像下面这样描述用法：
+```
+$ ls [-l] [<path>]
+```
+- `-l`开关表示是否输出详细信息，缺省为否
+- `path`参数表示路径，缺省为`.`（当前目录）
+
+当您想要使用该命令列出`/some-dir`下的文件时，应该输入
+```
+$ ls /some-dir
+$ ls -l /some-dir  // 输出详细信息
+```
+而不是
+```
+$ ls [</some-dir>]
+$ ls [-l] [</some-dir>]
+```
+
+**关于使用终端的其它注意事项和需了解的信息，请继续浏览本文档**
+
+- [常用指令](./command.md)
+- [Linux 命令大全 \| 菜鸟教程](https://www.runoob.com/linux/linux-command-manual.html)
+
 
 
 ---
@@ -290,7 +342,7 @@ Review：`~/`也是一种相对路径记法
 当使用`man`查看帮助文档、`systemctl status`查看服务状态、`git log`查看 git 提交记录时，将进入阅读模式
 
 左下角将会出现下面这样的提示，一般包含帮助信息、行号、文档名等，也有可能只是单独的冒号。
-- ` Manual page <cmd> line <linenum> (press h for help or q to quit)`
+- `Manual page <cmd> line <linenum> (press h for help or q to quit)`
 - `lines 1-19/19 (END)`
 - `:`
 

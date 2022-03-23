@@ -20,16 +20,26 @@
 ## 配置 SSH-Key
 ### 生成密钥对
 1. 打开 XShell->工具->新建用户密钥生成向导
-    ![image.png](https://s2.loli.net/2022/03/23/OfIjAUEdl9Hpys5.png)
+
+![image.png](https://s2.loli.net/2022/03/23/OfIjAUEdl9Hpys5.png)
+
 2. 选择算法和长度，默认即可
-    ![image.png](https://s2.loli.net/2022/03/23/ewA6NvTfjE3WoXP.png)
+
+![image.png](https://s2.loli.net/2022/03/23/ewA6NvTfjE3WoXP.png)
+
 3. 设置密钥名称和密码，默认即可（密码留空即可，但注意不要泄露生成的文件）
-    ![image.png](https://s2.loli.net/2022/03/23/X7oxNFYs982bkHK.png)
+
+![image.png](https://s2.loli.net/2022/03/23/X7oxNFYs982bkHK.png)
+
 4. 得到公钥，复制下来备用
-    ![image.png](https://s2.loli.net/2022/03/23/4STjmgdGosL3c12.png)
+
+![image.png](https://s2.loli.net/2022/03/23/4STjmgdGosL3c12.png)
+
 5. （可选）导出私钥备用，可以在 XShell->工具->用户密钥管理器 打开界面，导出格式可以选择 OpenSSH New Format Private Keys
-    ![image.png](https://s2.loli.net/2022/03/23/jmy1EVa5pFd2Nft.png)
-    ![image.png](https://s2.loli.net/2022/03/23/ig7TxwOlmt8r5MK.png)
+
+![image.png](https://s2.loli.net/2022/03/23/jmy1EVa5pFd2Nft.png)
+
+![image.png](https://s2.loli.net/2022/03/23/ig7TxwOlmt8r5MK.png)
 
 
 

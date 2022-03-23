@@ -47,7 +47,7 @@
   * 输入`w`（在左下角显示为`:w`）并按回车保存文件
   * 输入`q`并按回车退出。如果有未保存的修改，将报错`E37: No write since last change (add ! to override)`，使用`q!`强制退出
   * 注：底线命令模式大部分命令可连用，如`wq`表示写入并退出
-- [vi/vim \| 菜鸟教程](https://www.runoob.com/linux/linux-vim.html)
+- [vi / vim \| 菜鸟教程](https://www.runoob.com/linux/linux-vim.html)
 
 ## `gedit`
 **不推荐使用**，见[图形化与命令行](./linux.md#图形化与命令行)
