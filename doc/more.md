@@ -24,6 +24,7 @@
 - [提问的智慧](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md)：如何有效向他人提问
 - \*[How-To-Ask-Questions-The-Smart-Way](http://www.catb.org/~esr/faqs/smart-questions.html)：上面的英文版
 - [Linux 就该这么学](https://www.linuxprobe.com/)
+- [Linux 命令大全（手册）](https://ipcmen.com/)：同时提供了几个在线尝试 Linux 命令的模拟器以供练习
 
 
 
