@@ -14,6 +14,7 @@
 ---
 ## 网站
 - [菜鸟教程](https://www.runoob.com/)：包括了 HTML、CSS、Javascript、Go、C/C++、Verilog 等各种语言的基础编程教程。也包含 Git、Linux 等常用环境和工具的教程。
+- [极客教程](https://geek-docs.com/)
 - [W3School](https://www.w3school.com.cn/)：web 开发教程。从基础的 HTML 到 CSS，乃至进阶的 XML、SQL、JS、PHP 和 ASP.NET。
 - [C 语言中文网](http://c.biancheng.net/)：站如其名，提供了 C/C++ 的教程和实战案例等。也提供 Web 前端和 Linux 的教程。
 - \*[The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)：MIT 的 Linux 命令行、Vim、Git 等教程。页面底部有切换为中文的选项。

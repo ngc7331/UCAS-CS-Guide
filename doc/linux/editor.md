@@ -9,15 +9,17 @@
 
 除 vscode 外，本节中的软件包均可[通过`apt`安装](./install_program.md#apt)
 
+一个玩笑：[为什么Word是最好用的编程IDE \| Joma Tech](https://www.bilibili.com/video/BV11R4y1W7Wk)
+
 ## 目录
 - [编辑器](#编辑器)
   - [目录](#目录)
-  - [`nano`](#nano)
-  - [`vi` / `vim`](#vi--vim)
-  - [`gedit`](#gedit)
-  - [`vscode`](#vscode)
+  - [nano](#nano)
+  - [vi / vim](#vi--vim)
+  - [gedit](#gedit)
+  - [vscode](#vscode)
 
-## `nano`
+## nano
 - 使用：`nano <path>`
 - 若`path`指定的文件不存在，在**保存时**自动创建
 - 进入后可直接对文件进行修改
@@ -30,8 +32,11 @@
 - `Ctrl + X`退出。如果有未保存的修改，会在页面底部询问是否保存，按下`N`直接退出
 - [nano \| Linux 命令大全](https://ipcmen.com/nano)
 
-## `vi` / `vim`
+## vi / vim
 以前`vi`和`vim`有一些差异，但一般涉及不到。现在`vi`似乎是`vim`的别名，故本节不提及。
+
+vim 是一个功能非常强大的 IDE，支持插件等定制化使用，但正如头图展示的那样，它入手难度相对较高，本节中只会涉及最最最最基础的概念，及编辑、保存、退出的方法。
+
 - 使用：`vi <path>`、`vim <path>`
 - 若`path`指定的文件不存在，在**保存时**自动创建
 - vi 有三个模式：一般模式（命令模式），编辑模式，底线命令模式。刚进入 vi 界面时为一般模式，切换方式如下：
@@ -48,11 +53,12 @@
   * 输入`q`并按回车退出。如果有未保存的修改，将报错`E37: No write since last change (add ! to override)`，使用`q!`强制退出
   * 注：底线命令模式大部分命令可连用，如`wq`表示写入并退出
 - [vi / vim \| 菜鸟教程](https://www.runoob.com/linux/linux-vim.html)
+- [Learn-Vim(the Smart Way) 中文翻译](https://github.com/wsdjeg/Learn-Vim_zh_cn)
 
-## `gedit`
+## gedit
 **不推荐使用**，见[图形化与命令行](./linux.md#图形化与命令行)
 - 使用：`gedit <path>`或在图形化界面中直接启动
 - 与 Windows 下记事本类似
 
-## `vscode`
+## vscode
 见 [vscode](recommend_env/vscode.md) 一节
