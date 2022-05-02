@@ -64,10 +64,27 @@ Git（读音为/gɪt/）是一个开源的分布式**版本控制系统**。由 
 仓库的根路径下有一个`.git`目录，其中包含了仓库的配置文件、版本控制信息等必要信息
 
 ### 提交 commit
+提交时需要填写 commit message，默认第一行为标题，后续为详情
 
-- [git commit 编写指南 \| 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+**每次提交都会生成一个40位的唯一 id，称为 commit hash**
 
+当需要引用某一次 commit 时，例如针对某一次 commit 打标签时，都是使用 commit hash 来唯一地确定指定的 commit
 
+例如在[本仓库的 commit 页面](https://github.com/ngc7331/UCAS-CS-Guide/commits/main)有这样的一次提交：
+
+![image.png](https://s2.loli.net/2022/05/02/WcMIvyU1HPB8FLb.png)
+
+蓝色箭头为标题，黄色箭头为详情，红色箭头为 commit hash 的前7位
+
+它是通过执行
+```
+$ git commit -m "docs: 2022.04.01.1
+
+- add more hint..."
+```
+产生的，注意这里用双引号包裹了整个 commit message，因此其中可以包含换行
+
+- [工作在你的项目上](https://www.git-tower.com/learn/git/ebook/cn/command-line/basics/working-on-your-project#start)
 
 ---
 ## 具体使用
@@ -106,6 +123,26 @@ $ git clone https://gitlab.<hidden>/ucas-cod-2022/<学号>.git COD-Lab
 $ ls -a
 COD-Lab
 ```
+
+### 追踪 `git add`
+使用`git add <path>`便可追踪 path，若 path 是一个目录，则追踪该目录下的**所有文件**
+
+每次 commit 前都需要针对修改了的文件执行`git add`
+
+一个比较偷懒的用法是在**仓库根目录**下执行`git add .`，它意味着追踪仓库内所有文件
+
+亦可在执行`git commit`时使用`-a`选项，它将自动追踪仓库内所有文件
+
+### 提交 `git commit`
+使用`git commit -m "<commit message>"`便可以将当前仓库中所有**被追踪**的文件变动提交到仓库。
+
+- [git commit 编写指南 \| 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+
+### 标签 `git tag`
+使用`git tag <tag name> [<commit hash>]`来为某一次commit打tag
+
+当 commit hash 缺省时，默认为 HEAD，即当前分支上最新一次提交
+
 
 ---
 ## 参考
