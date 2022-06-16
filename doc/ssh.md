@@ -15,6 +15,8 @@
   - [设置 SSH-key 实现免密登陆](#设置-ssh-key-实现免密登陆)
     - [使用 XShell 进行配置](#使用-xshell-进行配置)
   - [在 vscode 中使用 ssh](#在-vscode-中使用-ssh)
+  - [进阶内容](#进阶内容)
+    - [.ssh/config 文件及多身份](#sshconfig-文件及多身份)
 
 ## SSH 是什么
 SSH（Secure Shell，安全外壳协议）是一种加密网络传输协议，常用于从客户端远程登录服务器。
@@ -104,8 +106,19 @@ Are you sure you want to continue connecting (yes/no)?
 首先在本地计算机上生成密钥对：
 ```
 $ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (~/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
 ```
-此时在~/.ssh下会出现下述文件：
+命令中`-t rsa`表示指定加密算法为 rsa 算法，其他可选项有`dsa | ecdsa | ecdsa-sk | ed25519 | ed25519-sk`，如不了解，可以缺省该项以使用默认的设置
+
+运行中需要输入的分别是：
+1. 要保存的私钥的**绝对路径**（默认为`~/.ssh/id_rsa`），公钥将保存到同样路径下的`.pub`文件（默认为`~/.ssh/id_rsa.pub`）
+2. 密钥对的密码（默认为无密码）
+3. 确认密码
+
+完成后，`~/.ssh`下会出现下列文件：
 
 ```
 id_rsa			//私钥文件
@@ -136,3 +149,53 @@ PubkeyAuthentication yes  // 找到该项并改为yes
 
 ## 在 vscode 中使用 ssh
 见 [vscode](recommend_env/vscode.md) 一节
+
+## 进阶内容
+### .ssh/config 文件及多身份
+- [How to Use SSH Config File \[Beginner's Guide\]](https://linuxhandbook.com/ssh-config-file/)
+
+可能有时会有这样的需求：希望在不同的平台（如 Github 和 GitLab ）使用不同的 ssh-key，那么通过在`.ssh/config`配置文件内进行多身份的设置就十分重要
+
+首先，需要生成多个密钥对，在[设置 SSH-key 实现免密登陆](#设置-ssh-key-实现免密登陆)一节中已经提到，使用`ssh-keygen`生成密钥时可以指定一个保存路径。只需再次运行该命令并指定一个不同的文件名，即可在不影响原有密钥对的情况下生成新的密钥对
+
+（建议将所有密钥保存到`~/.ssh/`路径下便于管理）
+
+接下来，修改（或创建）`~/.ssh/config`文件，示例如下
+```
+Host github.com
+    HostName github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/key-for-github
+
+Host=gitee.com
+    HostName=gitee.com
+    PreferredAuthentications=publickey
+    IdentityFile ~/.ssh/key-for-gitee
+
+Host private-server
+    HostName 192.168.123.456
+    User ucas
+    Port 2222
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_rsa
+```
+每一行都符合`key value`或`key=value`的形式（为了美观，不建议如该例中混用），其中 key 对大小写不敏感，而 value 敏感
+
+每个 Host 对应一个主机（或者身份）其名称可以自由设置，一个 Host 内部可以有一些可选参数：
+- HostName 为主机名，即服务器的域名或 ip 地址
+- User 为要使用的用户，可以缺省
+- Port 为服务器 ssh 服务的端口，缺省时为默认的22端口
+- IdentityFile 为私钥的绝对路径
+- ...
+
+在配置完成后，可以使用`ssh <host>`来使用配置文件中的身份，例如
+```
+$ ssh private-server
+```
+在上例的配置中就等价于
+```
+$ ssh ucas@192.168.123.456 -p 2222
+```
+且优先使用密钥对方式进行身份认证
+
+此外，上例配置后在使用`ssh`协议访问 github 与 gitee 私有仓库时，也会自动使用相应的私钥进行认证，免去重复输入密码的痛苦
