@@ -152,7 +152,7 @@ PubkeyAuthentication yes  // 找到该项并改为yes
 
 ## 进阶内容
 ### .ssh/config 文件及多身份
-- [How to Use SSH Config File \[Beginner's Guide\]](https://linuxhandbook.com/ssh-config-file/)
+- [How to Use SSH Config File \| Beginner's Guide](https://linuxhandbook.com/ssh-config-file/)
 
 可能有时会有这样的需求：希望在不同的平台（如 Github 和 GitLab ）使用不同的 ssh-key，那么通过在`.ssh/config`配置文件内进行多身份的设置就十分重要
 

@@ -4,15 +4,15 @@
 ## 目录
 - [学习更多](#学习更多)
   - [目录](#目录)
-  - [网站](#网站)
+  - [资源](#资源)
   - [视频](#视频)
-  - [在线练习](#在线练习)
+  - [练习](#练习)
   - [致谢](#致谢)
 
 
 
 ---
-## 网站
+## 资源
 - [菜鸟教程](https://www.runoob.com/)：包括了 HTML、CSS、Javascript、Go、C/C++、Verilog 等各种语言的基础编程教程。也包含 Git、Linux 等常用环境和工具的教程。
 - [极客教程](https://geek-docs.com/)
 - [W3School](https://www.w3school.com.cn/)：web 开发教程。从基础的 HTML 到 CSS，乃至进阶的 XML、SQL、JS、PHP 和 ASP.NET。
@@ -26,6 +26,9 @@
 - \*[How-To-Ask-Questions-The-Smart-Way](http://www.catb.org/~esr/faqs/smart-questions.html)：上面的英文版
 - [Linux 就该这么学](https://www.linuxprobe.com/)
 - [Linux 命令大全（手册）](https://ipcmen.com/)：同时提供了几个在线尝试 Linux 命令的模拟器以供练习
+- [CS 自学指南](https://csdiy.wiki/)：PKU大佬的自学指南
+- \*[a-picture-is-worth-a-1000-words](https://github.com/girliemac/a-picture-is-worth-a-1000-words)：用手抄报形式介绍 git、ai、ml 等知识
+- [中国程序员容易发音错误的单词](https://github.com/shimohq/chinese-programmer-wrong-pronunciation)
 
 
 
@@ -36,7 +39,7 @@
 
 
 ---
-## 在线练习
+## 练习
 - [Verilog OJ](https://verilogoj.ustc.edu.cn/oj/)：中国科学技术大学的 Verilog 在线练习平台
 
 

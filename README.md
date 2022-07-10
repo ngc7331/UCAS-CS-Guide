@@ -19,7 +19,7 @@ Made with ❤️ by an ordinary UCASer
 ## 说明
 - 因个人能力有限，本指南**不可避免的会存在疏漏乃至错误**，希望各位大佬包涵
 - ***如果您发现了问题，或者有希望添加到指南中的内容，欢迎发送Discussion, Issue以及PR***
-  * 什么是 Discussion / Issue / PR？请参考 [git](doc/git.md) 页面
+  * 什么是 Discussion / Issue / PR？请参考 [github](doc/recommend_env/github.md) 页面
   * 了解[如何贡献](./CONTRIBUTING.md)
 - 本指南会大量结合我——作为一个 UCAS 计系学生——在课程中的实际经验进行编写。侧重于解释和解决实际同学产生的困惑和遇到的麻烦，不一定具有普适性
 - 个人主要使用 Debian 系的发行版，对其它发行版不算熟悉。且考虑到学校课程通常使用 Ubuntu。本文将基于 Ubuntu 进行编写，如果您熟悉其他发行版，欢迎补充。
@@ -30,7 +30,8 @@ Made with ❤️ by an ordinary UCASer
 - 本指南可以在以下页面阅读：
   * 当前 [Github](https://github.com/ngc7331/UCAS-CS-Guide) 仓库
   * [Github Pages](https://ngc7331.github.io/UCAS-CS-Guide/)
-  * [Gitee](https://gitee.com/xu_zh/UCAS-CS-Guide) 镜像仓库：国内可能访问较快，但更新可能滞后于 Github，采用 Github Actions 自动同步
+  * [Gitee](https://gitee.com/xu_zh/UCAS-CS-Guide) 镜像：国内可能访问较快，但可能滞后于 Github，采用 Github Actions 自动同步。
+    同步状态：![Sync-gitee](https://github.com/ngc7331/UCAS-CS-Guide/actions/workflows/sync-gitee.yml/badge.svg).
 - 请善用 `Ctrl+F` 搜索页面中的内容
 - 参考资料会在各页面的底部给出，如有需要查阅更加详细的文档，请前往原始页面
 - 代码块的含义：本文中可能会出现下面这样的“代码块”，其中

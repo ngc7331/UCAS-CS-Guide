@@ -14,6 +14,10 @@
     - [创建仓库](#创建仓库)
       - [初始化`git init`](#初始化git-init)
       - [克隆远程仓库 `git clone`](#克隆远程仓库-git-clone)
+    - [追踪 `git add`](#追踪-git-add)
+    - [提交 `git commit`](#提交-git-commit)
+    - [标签 `git tag`](#标签-git-tag)
+  - [.gitignore](#gitignore)
   - [参考](#参考)
 
 
@@ -142,6 +146,13 @@ COD-Lab
 使用`git tag <tag name> [<commit hash>]`来为某一次commit打tag
 
 当 commit hash 缺省时，默认为 HEAD，即当前分支上最新一次提交
+
+
+
+---
+## .gitignore
+TODO
+
 
 
 ---
