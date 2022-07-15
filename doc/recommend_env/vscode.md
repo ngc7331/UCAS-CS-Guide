@@ -141,4 +141,6 @@ vscode 的一个重要概念：工作区 (workspace)。
 
 ---
 ## Git
+- [VS Code里使用Git和关联GitHub \| Bilibili](https://www.bilibili.com/video/BV1r3411F7kn) 17'54"
+
 TODO
