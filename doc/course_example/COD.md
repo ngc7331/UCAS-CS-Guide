@@ -91,11 +91,11 @@
   * `commit`为`git`的子命令，提交 commit，使用`git commit --help`查看帮助
   * 这样会采用交互式的方法使用之前设置的`core.editor`填写 commit message
   * 更推荐的方法是直接使用`-m`参数把 commit message 写在命令里，如下所示。由于标题和内容是一整个字符串，中间包含换行符，所以两端要用引号包裹，若信息中带有引号，请使用转义符。习惯上标题和信息间空一行
-```
-$ cd ~/COD-Lab && git commit -m "<commit_title>
+    ```
+    $ cd ~/COD-Lab && git commit -m "<commit_title>
 
-<commit_message>"
-```
+    <commit_message>"
+    ```
 - `cd ~/COD-Lab && git log`
   * git 查看提交记录
   * `log`为`git`的子命令，查看 commit 提交记录，使用`git log --help`查看帮助
