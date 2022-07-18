@@ -159,3 +159,4 @@ TODO
 ## 参考
 - \*[Git 官方网站](https://git-scm.com/)
 - [Learn Version Control with Git（有中文）](https://www.git-tower.com/learn/git/ebook/cn/command-line/introduction)
+- [git 命令速查表](https://www.runoob.com/note/56524)

@@ -102,7 +102,7 @@ Reading package lists... Done  // 计算机给出的输出
 ## 课程实例
 - [说明](doc/course_example/info.md)
 - [程序设计基础与实验（C语言）](doc/course_example/c.md)
-- [计算机组成原理](doc/course_example/COD.md)
+- [计算机组成原理（研讨课）](doc/course_example/COD.md)
 
 ## [应对错误](doc/problem.md)
 - 常见错误及解决方案
