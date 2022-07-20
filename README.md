@@ -30,8 +30,11 @@ Made with ❤️ by an ordinary UCASer
 - 本指南可以在以下页面阅读：
   * 当前 [Github](https://github.com/ngc7331/UCAS-CS-Guide) 仓库
   * [Github Pages](https://ngc7331.github.io/UCAS-CS-Guide/)
+
+    部署状态：![Github Pages](https://img.shields.io/github/deployments/ngc7331/UCAS-CS-Guide/github-pages?label=Github%20Pages)
   * [Gitee](https://gitee.com/xu_zh/UCAS-CS-Guide) 镜像：国内可能访问较快，但可能滞后于 Github，采用 Github Actions 自动同步。
-    同步状态：![Sync-gitee](https://github.com/ngc7331/UCAS-CS-Guide/actions/workflows/sync-gitee.yml/badge.svg).
+
+    同步状态：![Sync gitee](https://img.shields.io/github/workflow/status/ngc7331/UCAS-CS-Guide/sync-gitee?label=Sync%20gitee)
 - 请善用 `Ctrl+F` 搜索页面中的内容
 - 参考资料会在各页面的底部给出，如有需要查阅更加详细的文档，请前往原始页面
 - 代码块的含义：本文中可能会出现下面这样的“代码块”，其中
@@ -86,7 +89,8 @@ Reading package lists... Done  // 计算机给出的输出
 ## [SSH](doc/ssh.md)
 - 简介
 - 使用 ssh 连接到 Linux 系统
-- ssh-key
+- ssh-key 密钥对
+- ~/ssh/config 配置文件
 
 ## [Git](doc/git.md)
 - 简介
@@ -98,9 +102,10 @@ Reading package lists... Done  // 计算机给出的输出
 ## 环境推荐
 - [WSL](doc/recommend_env/wsl.md)
 - [vscode](doc/recommend_env/vscode.md)
+- [xshell](doc/recommend_env/xshell.md)
+- [github](doc/recommend_env/github.md)
 
-## 课程实例
-- [说明](doc/course_example/info.md)
+## [课程实例](doc/course_example/info.md)
 - [程序设计基础与实验（C语言）](doc/course_example/c.md)
 - [计算机组成原理（研讨课）](doc/course_example/COD.md)
 
@@ -108,6 +113,8 @@ Reading package lists... Done  // 计算机给出的输出
 - 常见错误及解决方案
 - 如何初步读懂报错
 - 如何有效向他人提问
+
+## [常见缩写](doc/abbr.md)
 
 ## [学习更多](doc/more.md)
 - 参考书单&在线文章&工具列表...
