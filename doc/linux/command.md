@@ -130,21 +130,21 @@
 - 注：`grep`，`awk`和`sed`有时并称“Linux 三剑客”，它们有着比此处所提及到更强大的功能，但由于课程一般使用不到，请有兴趣的同学自行了解
   * [grep,sed,awk笔记 \| AJ丶cheng](https://blog.51cto.com/u_12554680/2307019)
 - 示例：
-```
-$ cat config.json
-{
-...
-  "USERNAME": "some-user",
-  "password": "this_is_a_passwd",
-...
-}
-```
-```
-$ grep -i username config.json
-  "USERNAME": "some-user",
-$ grep username config.json
-// 无输出（未指定-i，config.json文档中没有匹配小写username的行）
-```
+  ```
+  $ cat config.json
+  {
+  ...
+    "USERNAME": "some-user",
+    "password": "this_is_a_passwd",
+  ...
+  }
+  ```
+  ```
+  $ grep -i username config.json
+    "USERNAME": "some-user",
+  $ grep username config.json
+  // 无输出（未指定-i，config.json文档中没有匹配小写username的行）
+  ```
 
 ## 更改文件权限 `chmod`
 - 用法：`chmod <permission> <path>`
@@ -167,20 +167,20 @@ $ grep username config.json
 - 用法：`su [<user>]`
 - 切换至`user`，需要输入`user`的密码
 - `user`缺省时默认为当前用户，一般来讲没有作用，但考虑下面这种做法：
-```
-user1@host:~$ sudo -u user2 su
-// 由于使用了 sudo -u，该命令被认为是以 user2 身份执行
-// su 后面缺省了参数，故会将用户切换为 user2
-// 而 sudo 是 user1 执行的，故需要输入的是 user1 的密码
-```
+  ```
+  user1@host:~$ sudo -u user2 su
+  // 由于使用了 sudo -u，该命令被认为是以 user2 身份执行
+  // su 后面缺省了参数，故会将用户切换为 user2
+  // 而 sudo 是 user1 执行的，故需要输入的是 user1 的密码
+  ```
 - 常见特殊用法：直接`su root`需要使用`root`的密码，该密码一般是用户未知、或者出于安全考虑被禁用的；而`sudo su`可以切换至`root`用户，只需输入自己的密码
-```
-user1@host:~$ su root
-Password: // 应输入 root 的密码，未知或禁用
-user1@host:~$ sudo su
-[sudo] Password of user1: // 应输入 user1 的密码，已知
-// sudo su 等价于 sudo -u root su root，请参考这两个命令的缺省值理解
-```
+  ```
+  user1@host:~$ su root
+  Password: // 应输入 root 的密码，未知或禁用
+  user1@host:~$ sudo su
+  [sudo] Password of user1: // 应输入 user1 的密码，已知
+  // sudo su 等价于 sudo -u root su root，请参考这两个命令的缺省值理解
+  ```
 
 ## `sudo`
 - 用法：`sudo [-u <user>] <指令>`
@@ -188,10 +188,10 @@ user1@host:~$ sudo su
 - 不使用`[-u <user>]`时默认为`root`用户
 - 短期内首次使用时会要求输入**当前用户**的密码
 - 示例：
-```
-$ sudo apt update
-$ sudo reboot
-```
+  ```
+  $ sudo apt update
+  $ sudo reboot
+  ```
 
 ## 特殊符号
 ### 与 `&&`、或 `||`、`;`
@@ -203,71 +203,70 @@ $ sudo reboot
   * `;`则与 c 几乎完全相同，类似于`func1(); func2();`
 - 注意：`sudo <指令>`将被当作一个指令整体，即`sudo <指令1> && <指令2>`只有指令1获得了超级用户权限
 - 示例：
-```
-$ gcc hw1.c -o hw1 && ./hw1   // 编译 hw1.c 到 hw1 并在编译成功时运行它
-$ cd ~/COD-Lab && git pull    // 移动到 ~/COD-Lab 路径下并执行 git pull 拉取仓库
-$ sudo apt update && apt upgrade      // 错误：后一个 apt upgrade 指令没有 sudo 权限
-$ sudo apt update && sudo apt upgrade // 正确：先执行更新软件源，随后更新所有软件包
-```
+  ```
+  $ gcc hw1.c -o hw1 && ./hw1   // 编译 hw1.c 到 hw1 并在编译成功时运行它
+  $ cd ~/COD-Lab && git pull    // 移动到 ~/COD-Lab 路径下并执行 git pull 拉取仓库
+  $ sudo apt update && apt upgrade      // 错误：后一个 apt upgrade 指令没有 sudo 权限
+  $ sudo apt update && sudo apt upgrade // 正确：先执行更新软件源，随后更新所有软件包
+  ```
 
 ### 管道符 `|`
 - 用法：`<指令1> | <指令2>`
 - 简单来说，它是把指令1的输出作为指令2的输入进行执行
 - 常见用于`grep`指令，例如`cat <file> | grep <text>`等价于`grep <text> <file>`
-- 示例：
-```
-$ cat config.json | grep -i username
-  "USERNAME": "some-user",
-$ cat config.json | grep password
-  "password": "this_is_a_passwd",
-```
+- 示例（`config.json`文件内容见 [grep](#文本匹配和筛选-grep)）：
+  ```
+  $ cat config.json | grep -i username
+    "USERNAME": "some-user",
+  $ cat config.json | grep password
+    "password": "this_is_a_passwd",
+  ```
 
 ### 输出重定向符 `>`、 `>>`
 - 用法：`<指令> > <file>`、`<指令> >> <file>`
 - 将指令的输出放入`file`，前者会覆盖文件原本的内容，后者则增添到尾部
 - 示例：
-```
-$ echo 123 > test
-$ cat test
-123
-```
-```
-$ echo 456 >> test
-$ cat test
-123
-456
-```
-```
-$ echo 789 > test
-$ cat test
-789
-```
+  ```
+  $ echo 123 > test
+  $ cat test
+  123
+  ```
+  ```
+  $ echo 456 >> test
+  $ cat test
+  123
+  456
+  ```
+  ```
+  $ echo 789 > test
+  $ cat test
+  789
+  ```
 
 ### 多行输入` \ `
 - 当一个指令需要多行输入时（通常是为了人读起来更方便），在除了最后一行外每行结尾增加` \ `
 - 后续行的标识符将变成`>`，而不再是`$`或`#`
 - 示例：
-```
-$ echo 123\
-> 456 \            // 注意本行的 \ 前有一个空格
-> 789
-123456 789
-// 完全等价于 echo 123456 789
-```
-```
-$ docker run -p 80:80 \
-> -v /data:/data \
-> -d nginx:latest
-// 完全等价于 docker run -p 80:80 -v /data:/data -d nginx:latest
-// 用于分割参数时必须在 \ 前带一个空格，否则↓
-```
-```
-$ docker run -p 80:80\
-> -d nginx:latest
-docker: Invalid containerPort: 80-d
-// 由于缺少空格，这行命令实际等价于 docker run -p 80:80-d nginx:latest，注意到 80-d 连在了一起，而它不是一个有效的端口号，故报错
-```
-
+  ```
+  $ echo 123\
+  > 456 \            // 注意本行的 \ 前有一个空格
+  > 789
+  123456 789
+  // 完全等价于 echo 123456 789
+  ```
+  ```
+  $ docker run -p 80:80 \
+  > -v /data:/data \
+  > -d nginx:latest
+  // 完全等价于 docker run -p 80:80 -v /data:/data -d nginx:latest
+  // 用于分割参数时必须在 \ 前带一个空格，否则↓
+  ```
+  ```
+  $ docker run -p 80:80\
+  > -d nginx:latest
+  docker: Invalid containerPort: 80-d
+  // 由于缺少空格，这行命令实际等价于 docker run -p 80:80-d nginx:latest，注意到 80-d 连在了一起，而它不是一个有效的端口号，故报错
+  ```
 
 ## 安装软件
 - `apt` / `dpkg` / `make`
@@ -292,10 +291,10 @@ docker: Invalid containerPort: 80-d
 - `<time>`为倒计时，默认单位为分钟。可以是`now`
 - `[message]`为关机信息
 - 示例：
-```
-$ shutdown -r now // 立即重启
-$ shutdown -h 10  // 10分钟后关机
-```
+  ```
+  $ shutdown -r now // 立即重启
+  $ shutdown -h 10  // 10分钟后关机
+  ```
 
 ### `reboot`
 - 用法：`reboot`
