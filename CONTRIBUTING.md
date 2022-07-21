@@ -1,7 +1,11 @@
 # 如何贡献
 **Note：请保证您在以下区域发布的内容符合我国法律要求**
 
+
+
 ## Issue
+- [Issue](doc/recommend_env/github.md#issue) 是什么
+
 用于：
 - 反馈指南中的错误，请[使用 Bug report 模板](https://github.com/ngc7331/UCAS-CS-Guide/issues/new?assignees=&labels=bug&template=bug_report.md&title=)
 - 提出希望新增到指南中的内容，请[使用 Feature request 模板](https://github.com/ngc7331/UCAS-CS-Guide/issues/new?assignees=&labels=bug&template=feature_request.md&title=)
@@ -10,6 +14,8 @@
 
 
 ## Pull Request
+- [PR](doc/recommend_env/github.md#pull-requestpr) 是什么
+
 用于非维护者的贡献者修改指南内容
 
 如果您希望修改指南或在指南中新增内容，请先通过 issue 进行说明，随后在 Pull Request 时引用该 issue 以便节省 review 的时间

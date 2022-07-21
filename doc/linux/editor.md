@@ -7,7 +7,7 @@
 
 本节中只会涉及到 Linux 环境下常用编辑器的基本使用。
 
-除 vscode 外，本节中的软件包均可[通过`apt`安装](./install_program.md#apt)
+除 vscode 外，本节中的软件包均可[通过`apt`安装](install_program.md#apt)
 
 一个玩笑：[为什么Word是最好用的编程IDE \| Joma Tech](https://www.bilibili.com/video/BV11R4y1W7Wk)
 
@@ -61,4 +61,4 @@ vim 是一个功能非常强大的 IDE，支持插件等定制化使用，但正
 - 与 Windows 下记事本类似
 
 ## vscode
-见 [vscode](recommend_env/vscode.md) 一节
+见 [vscode](../recommend_env/vscode.md) 一节
