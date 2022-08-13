@@ -1,24 +1,31 @@
 # 课程实例-计算机组成原理（研讨课）
 计组研讨课应该是第一个强制要求使用 Linux + Git 的课程。在本章中，我们会对课件中出现的命令进行解释，但仍建议您抽空阅读 [Linux 基础](../linux/linux.md)一节和 [Git](../git.md) 一节，以便对它们有更全面的了解。
 
+文本量较大，建议使用`Ctrl + F`搜索功能快速定位到需要的地方
+
 ## 目录
 - [课程实例-计算机组成原理（研讨课）](#课程实例-计算机组成原理研讨课)
   - [目录](#目录)
   - [命令解释](#命令解释)
     - [P01-实验课及平台开发流程简介-v6.pdf](#p01-实验课及平台开发流程简介-v6pdf)
-    - [...](#)
+    - [P02-基本功能部件设计-v9.pdf](#p02-基本功能部件设计-v9pdf)
+      - [P03-简单功能型处理器设计-v8.pdf](#p03-简单功能型处理器设计-v8pdf)
+    - [P03补充](#p03补充)
+    - [P04 ~ P06](#p04--p06)
     - [其余注意事项](#其余注意事项)
       - [简化命令](#简化命令)
+      - [拉取上游仓库](#拉取上游仓库)
   - [环境搭建](#环境搭建)
   - [FAQ](#faq)
     - [VirtualBox 报错](#virtualbox-报错)
       - [Failed to load R0 module xxx: The path is not clean of leading double slashes: xxx](#failed-to-load-r0-module-xxx-the-path-is-not-clean-of-leading-double-slashes-xxx)
-    - [终端报错](#终端报错)
+    - [杂项报错](#杂项报错)
       - [Invalid operation xxx](#invalid-operation-xxx)
       - [xxx: command not found](#xxx-command-not-found)
       - [Connection time out](#connection-time-out)
       - [Waiting for cache lock: Could not get lock xxx. It is held by process yyy (zzz).](#waiting-for-cache-lock-could-not-get-lock-xxx-it-is-held-by-process-yyy-zzz)
       - [dpkg was interrupted, you must manually run `sudo dpkg --configure -a` to correct the problem](#dpkg-was-interrupted-you-must-manually-run-sudo-dpkg---configure--a-to-correct-the-problem)
+      - [Error opening  .vcd file 'xxx.vcd'. Why: No such file or directory](#error-opening--vcd-file-xxxvcd-why-no-such-file-or-directory)
     - [git 报错](#git-报错)
       - [fatal: loose object xxx is corrupt](#fatal-loose-object-xxx-is-corrupt)
       - [fatal: unable to create xxx: Read-only file system](#fatal-unable-to-create-xxx-read-only-file-system)
@@ -134,8 +141,43 @@
     * 相对而言属于进阶内容，请自行学习`make`或死记硬背
     * 可以查看各目录下的`Makefile`和`*.mk`文件尝试解读
 
-### ...
-TODO
+### P02-基本功能部件设计-v9.pdf
+1. `cd ~/COD-Lab && git add lab_env.yml && git commit -m "lab_env: set design flow for reg_file"`
+    * 移动到仓库中、追踪`./lab_env.yml`文件、git 提交
+    * 前两部分应该无需再解释
+    * 如 P1（13）中解释，`git commit`的`-m`选项用于指定 commit message ，此处即为“lab_env: set design flow for reg_file”
+    * 事实上这个 message 可以不与老师严格一致，只要自己能理解即可
+2. `cd ~/COD-Lab && make FPGA_PRJ=ucas-cod FPGA_BD=nf SIM_TARGET=reg_file bhv_sim`
+    * 本地行为仿真
+    * 与 P1（16）中类似，通过`make`工具简化了我们的操作，构建目标从`wav_chk`变为了`bhv_sim`，环境变量中`SIM_TARGET`一项的值从`example`变为了`reg_file`
+3. `cd ~/COD-Lab && gtkwave -f fpga/sim_out/reg_file/dump.vcd`
+    * 本地查看波形
+    * 由于是在本地行为仿真，波形文件保存在`~/COD-Lab/fpga/sim_out/reg_file/dump.vcd`而非云端流水线的 Artifact 中，因此无法使用以前（如 P1（16））的`make ... wav_chk`命令查看波形
+    * 相对的，直接使用`gtkwave`工具，`-f <path>`指定波形文件路径
+4. `cd ~/COD-Lab && git add reports/ && git commit -m "docs: add prj1 report"`
+    * 与（1）类似，但有两点值得一提：
+    * 注意第二部分中`git add`后的参数是一个目录`reports`，即追踪该目录下的所有文件，如担心误提交亦可使用`git add reports/prj1.pdf`精确到文件
+    * 注意第三部分中的 commit message 以`docs:`开头。尽管我们说 commit message 是给人看的，对电脑无所谓，但这是一个特例。为了节省流水线运行资源，老师设置了以`docs:`开头的提交**不会触发流水线运行**，如有需要，在云平台上可以手动触发运行
+
+#### P03-简单功能型处理器设计-v8.pdf
+1. `cd ~/COD-Lab && git tag -a simple_cpu-single_cycle -m "Release single_cycle CPU design"`
+    * git 添加标签
+    * `-a <tagname>`指定标签名
+    * `-m <message>`指定标签信息，类似`commit`中的`-m <message>`参数
+    * 标签名需要与老师严格一致，便于老师检查判分
+2. `cd ~/COD-Lab && git push origin master --tags`
+    * git 推送本地标签到远程
+    * 与 P01（15）类似，只是多了`--tags`开关，表示推送标签
+    * 若本地有新的 commit，则建议先执行`git push`，随后`git push --tags`
+
+### P03补充
+1. `git tag -d <tag>`
+    * git 删除标签`<tag>`
+    * 已经打了某个标签，又修改了代码需要重新打标签，这种情况下需要先使用这条指令删除已有标签，随后如 P03（1）重新添加即可
+    * 云平台上的标签需要手动删除，或在推送时使用`-f`强制推送选项，即`git push origin master --tags -f`
+
+### P04 ~ P06
+无新增
 
 ### 其余注意事项
 #### 简化命令
@@ -150,6 +192,13 @@ TODO
 - 熟悉了参数默认值
 
 可以试着简化老师的命令，这可以有效的提高对 Linux 各种机制的理解，同时节省时间
+
+#### 拉取上游仓库
+在学期中，老师也会对实验框架做出更新（优化/修复），因此建议每次开始编写代码前，先执行`git pull upstream master`及时拉取更新
+
+在拉取更新时，可能遇到冲突，即在原先共有的提交上，老师和你各自在仓库中进行了新的提交，此时需要使用 rebase 或者 merge 进行合并
+
+- [Git-分支-变基](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA)
 
 
 
@@ -177,7 +226,7 @@ TODO
 
 - \*[Failed to load R0 module. \| virtualbox.org](https://forums.virtualbox.org/viewtopic.php?t=98775)
 
-### 终端报错
+### 杂项报错
 #### Invalid operation xxx
 参数无效
 
@@ -208,6 +257,17 @@ TODO
 之前调用`dpkg`安装软件的进程异常终止（例如上面提到的使用`kill -9`终止）
 
 按提示执行`sudo dpkg --configure -a`即可
+
+#### Error opening  .vcd file 'xxx.vcd'. Why: No such file or directory
+使用 gtkwave 打开波形文件时，指定的文件不存在
+
+若使用云端流水线，通过`make`命令获取波形，请检查：
+1. 流水线运行状态（是否完成？）
+2. `make`命令是否有其他报错，例如网络错误、未找到软件包等
+
+若使用本地仿真，通过`gtkwave`命令直接打开波形文件，请检查：
+1. 本地仿真是否完成
+2. 对应的目录下是否存在波形文件，可通过`ls -alR ~/COD-Lab/fpga/sim_out/`列出仿真输出下的文件
 
 ### git 报错
 #### fatal: loose object xxx is corrupt
