@@ -74,8 +74,7 @@ $ ls
       ```
       $ export PATH=/opt/riscv64-linux/bin:$PATH
       ```
-    - 长期修改，需要将上面的命令添加到 [shell 启动脚本](../linux/advanced.md#dotfiles)中
-      以 Ubuntu 默认的 bash 为例，添加到`~/.bashrc`中
+    - 长期修改，需要将上面的命令添加到 [shell 启动脚本](../linux/advanced.md#dotfiles)中。以 Ubuntu 默认的 bash 为例，添加到`~/.bashrc`中
       ```
       $ nano ~/.bashrc        // 可使用任意编辑器，这里用 nano
       // 在文件末尾另起一行，写入“export PATH=/opt/riscv64-linux/ bin:$PATH”
@@ -104,7 +103,7 @@ $ ls
    $ sudo apt install pkg-config libglib2.0-dev libpixman-1-dev
    ...
    ```
-3. 运行编译脚本。此步需要时间较长，且有大量 Warning，请耐心
+3. 运行编译脚本。此步需要时间较长，且有大量 Warning（似乎是不同 Python 版本间`==`和`is`的差异引起，助教老师说无需在意，没有报 Error 就行），请耐心
    ```
    $ cd OSLab-RISC-V
    $ ./rebuild-qemu.sh
