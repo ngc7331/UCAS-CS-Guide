@@ -9,6 +9,8 @@
     - [QEMU](#qemu)
     - [minicom](#minicom)
     - [Project0 测试](#project0-测试)
+  - [踩坑](#踩坑)
+    - [rebuild-uboot 报错：`multiple definition of 'yylloc'`](#rebuild-uboot-报错multiple-definition-of-yylloc)
 
 
 
@@ -207,3 +209,60 @@ Remote debugging using :1234
 ```
 
 如上，未报错，说明编译和运行正常，测试成功
+
+## 踩坑
+### rebuild-uboot 报错：`multiple definition of 'yylloc'`
+错误信息类似：
+```
+  ...
+  HOSTLD  scripts/dtc/dtc
+/usr/bin/ld: scripts/dtc/dtc-parser.tab.o:(.bss+0x10): multiple definition of `yylloc'; scripts/dtc/dtc-lexer.lex.o:(.bss+0x0): first defined here
+collect2: error: ld returned 1 exit status
+make[2]: *** [scripts/Makefile.host:106: scripts/dtc/dtc] Error 1
+make[1]: *** [scripts/Makefile.build:432: scripts/dtc] Error 2
+make: *** [Makefile:528: scripts] Error 2
+```
+
+与成功 rebuild 的同学比较发现，gcc 版本不同
+```
+// 失败编译的gcc版本
+$ gcc --version
+gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// 成功编译的gcc版本
+$ gcc --version
+gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+
+怀疑是 gcc11 与 gcc9 的差异，检查系统中是否安装了 gcc9：
+```
+$ gcc-9 --version
+gcc-9 (Ubuntu 9.5.0-1ubuntu1~22.04) 9.5.0
+...
+```
+
+若未安装：
+```
+$ gcc-9 --version
+bash: command not found: gcc-9
+```
+则使用 apt 进行安装
+```
+$ sudo apt install gcc-9 -y
+```
+
+随后修改 Makefile
+```
+$ nano ~/OSLab-RISC-V/u-boot/Makefile
+// 大约第 255 行
+HOSTCC       = cc
+// 修改为
+HOSTCC       = gcc-9
+```
+
+并重新执行编译脚本`./rebuild-uboot.sh`
