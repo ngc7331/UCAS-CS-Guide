@@ -3,10 +3,13 @@
 ## 目录
 - [进阶内容](#进阶内容)
   - [目录](#目录)
-  - [terminal & shell](#terminal--shell)
+  - [terminal \& shell](#terminal--shell)
     - [shell 脚本](#shell-脚本)
   - [dotfiles](#dotfiles)
     - [.bashrc](#bashrc)
+  - [后台运行](#后台运行)
+    - [nohup \&](#nohup-)
+    - [screen](#screen)
 
 
 
@@ -70,3 +73,31 @@ alias l='ls -CF'
 若需定义更多别名，也只需这样在文件任意位置（建议放在一起便于管理）添加一行`alias name="cmd"`即可
 
 - [什么是 .bashrc，为什么要编辑 .bashrc？ \| Linux 中国](https://zhuanlan.zhihu.com/p/33546077)
+
+
+
+## 后台运行
+在使用 Linux 时不难发现，当关闭终端时，正在执行的命令也会终止
+
+这是因为“执行命令”实际上是创建了一个 shell 的子进程，使用
+```
+$ ps -f
+UID       PID  PPID  C STIME TTY          TIME CMD
+user     3509    33  6 18:37 pts/3    00:00:00 /usr/bin/zsh -i
+user     3545  3509  0 18:37 pts/3    00:00:00 ps -f
+```
+可以看到`ps`的`PPID`（即父进程 pid）等于`zsh`的`PID`
+
+而 shell 退出时，会向子进程发出`SIGHUP`信号，收到该信号的子进程自行退出
+
+但我们有时希望执行的命令保持运行（例如用 Python 训练一个深度神经网络，肯定不希望在漫长的等待中必须保持终端打开），常见的方法有如下几种
+
+### nohup &
+用法：`nohup <cmd> &`
+
+`nohup`全称为 no hang up，意为“不挂起”，它会使`<cmd>`创建的子进程忽略`SIGHUP`信号
+
+结尾的`&`表示后台运行，避免 shell 阻塞地等待命令运行结束
+
+### screen
+- [Linux screen命令 \| 菜鸟教程](https://www.runoob.com/linux/linux-comm-screen.html)

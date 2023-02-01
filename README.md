@@ -34,7 +34,7 @@ Made with ❤️ by an ordinary UCASer
     部署状态：![Github Pages](https://img.shields.io/github/deployments/ngc7331/UCAS-CS-Guide/github-pages?label=Github%20Pages)
   * [Gitee](https://gitee.com/xu_zh/UCAS-CS-Guide) 镜像：国内可能访问较快，但可能滞后于 Github，采用 Github Actions 自动同步。
 
-    同步状态：![Sync gitee](https://img.shields.io/github/workflow/status/ngc7331/UCAS-CS-Guide/sync-gitee?label=Sync%20gitee)
+    同步状态：![Sync gitee](https://img.shields.io/github/actions/workflow/status/ngc7331/UCAS-CS-Guide/sync-gitee.yml?label=Sync%20gitee&branch=main)
 - 请善用 `Ctrl+F` 搜索页面中的内容
 - 参考资料会在各页面的底部给出，如有需要查阅更加详细的文档，请前往原始页面
 - 代码块的含义：本文中可能会出现下面这样的“代码块”，其中

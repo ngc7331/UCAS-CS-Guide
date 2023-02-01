@@ -84,6 +84,8 @@ $ sudo dpkg -i vscode.deb
 - [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) 套件：包括 SSH、WSL和容器扩展
 - [简体中文](https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-zh-hans) 语言扩展
 - [Trailing Spaces](https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces)：高亮行尾多余空格
+- [Gitlens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)：git 功能扩展
+- [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)：显示项目内待办事项
 - ...
 
 语言类的插件如下：
